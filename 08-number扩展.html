@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // NaN not a number 不是一个数值的类型
+        // Number扩展
+        // Number.isNaN()  判断是否为NaN
+        // Number.isFinite() 判断是否为有穷数
+
+        let num = 1 - 'a'
+        let num1 = 2
+        console.log('num==>', num)
+            // es5
+        console.log(isNaN([1, 2])) //true
+            // es6
+        console.log(Number.isNaN([1, 2])) //false
+
+
+
+            // Number.isNaN()
+            // 创建一个判断是否为NaN的原型方法 只适用于数值类型
+        Number.prototype.isNaN = function() {
+            console.log('this==>', this)
+            console.log('this.valueOF()', this.valueOf())
+            return isNaN(this.valueOf())
+
+        }
+        // Number.add = function() {
+        //     console.log('构造函数的方法')
+        // }
+        // Number.add()
+        console.log(num.isNaN())
+
+
+
+
+        //Number.isFinite()
+        let num2 = 1 / Number.MIN_VALUE
+        console.log('num2==>', num2)
+        console.log('Number.isFinite()', Number.isFinite(num2))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function fn() {  }
+        // var fn = function () {  }
+        // var fn = new Function() {}
+        // ES6 箭头函数
+        let fun1 = () => {
+            console.log('箭头函数')
+        }
+        fun1()
+            // 当只有一个参数的时候,圆括号可以省略
+        let fun2 = a => {
+            console.log('a==>', a)
+        }
+        fun2(5)
+            // 当参数为2个或2个以上时
+        let fun3 = (x, y) => {
+            // x的y次方
+            console.log(Math.pow(x, y))
+        }
+        fun3(2, 3)
+            // 有返回值 且返回的是一条语句
+            // let fun4 = () => {
+            //     return "hello world"
+            // }
+        let fun4 = () => "hello world"
+        console.log('fun4==>', fun4())
+
+        // 有返回值 且返回一条语句为对象时,在对象语句外面添加圆括号
+        // let fun5 = () => {
+        //     return {
+        //         name: "zhangsan "
+        //     }
+        // }
+        let fun5 = () => ({
+            name: "zhangsan "
+        })
+        console.log('fun5==>', fun5())
+
+        let fun6 = a => a + 6
+        console.log(fun6(3))
+
+        // 案例
+        let fun7 = year => {
+            if ((year % 4 == 0 && year % 100 != 0) | (year % 400 == 0)) {
+                return year + "年是闰年"
+            }
+            return year + "年是平年"
+        }
+        console.log('fun7==>', fun7(2021))
+    </script>
+</body>
+
+</html>

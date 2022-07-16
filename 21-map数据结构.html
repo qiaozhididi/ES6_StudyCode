@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map数据结构</title>
+</head>
+<body>
+    <script>
+
+        let map = new Map([['name','duck'],['color','black']])
+
+        console.log('map == > ',map)
+
+        // 
+        let person = {
+            height:180,
+            sex:'man',
+            name:'cat'
+        }
+
+        // 将对象的属性添加到map数据结构  set()
+        for(let key in person){
+            map.set(key,person[key])
+        }
+        console.log('map == > ',map)
+
+        // 获取元素  get()
+        let username = map.get('name')
+        console.log('username ==> ',username)
+
+        // size
+        // has()
+        // delete()
+        // clear()
+        // keys()
+        // values()
+        // entries()
+        // forEach()
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串扩展</title>
+</head>
+
+<body>
+    <div class="box">
+        <p>1</p>
+    </div>
+    <script>
+        var num = 4
+        var str = '今天星期' + num
+        console.log(str)
+        '<div class="box">'
+        '<p>1</p>'
+        '</div>'
+        //es6
+        let num1 = 5
+        let str2 = 'active'
+        let str1 = ` <div class="box ${str2}">
+        <p>${num1}</p>
+        </div>`
+        console.log(str1)
+
+        let str3 = '北京'
+        let str4 = '欢迎'
+        let str5 = '你'
+        let str6 = `hello,${str3}${str4}${str5}`
+        console.log('str6==>', str6)
+            // startsWith(查找的字符,从指定的下标开始查找) 查找字符串开头匹配的字符 返回ture or false(布尔值)
+            // includes(查找的字符,从指定的下标开始往后查找)查找字符串中有的字符 返回ture or false(布尔值)
+            // endsWith(查找的字符,前n个字符)查找字符串结尾匹配的字符 返回ture or false(布尔值)
+        let str7 = '今天星期四,晚上9点结束课程,我也想回家'
+        console.log(str7.startsWith('四', 4))
+        console.log(str7.includes('9', 8))
+        console.log(str7.endsWith('四', 5))
+    </script>
+</body>
+
+</html>

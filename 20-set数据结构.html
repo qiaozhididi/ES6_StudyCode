@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>set</title>
+</head>
+<body>
+    <script>
+        let c = []
+        let color = ['red','black','yellow','blue','red','yellow','white']
+        for(let i=0 ; i<color.length ; i++){
+            if(c.indexOf(color[i]) === -1){
+                c.push(color[i])
+            }
+        }
+        console.log('color ==> ',color)
+        console.log('c ==> ',c)
+
+        // set数据结构，不允许存在重复的值
+        let set = new Set([12,34,56,78,9,34,9,5])
+        
+
+        // 将set数据结构转换成数组结构
+        let colors = [...set]
+        console.log('colors ==> ',colors)
+
+        colors.map(v => {
+            console.log('v ==> ',v)
+        })
+
+        // 添加一个元素   add()
+        set.add('hello')
+
+        // 获取set元素个数   size
+        let size = set.size
+        console.log('size ==> ',size)
+
+        // 删除set元素   delete()
+        // set.delete(34)
+
+        // 清空set数据结构  clear()
+        // set.clear()
+
+        // 判断set是否存在指定元素  has()
+        let isHas = set.has(11)
+        console.log('isHas == > ',isHas)  //false
+
+        // keys()      获取键名
+        // values()    获取键值
+        // entries()   获取键名和键值
+        // forEach()   循环遍历后获取键名和键值
+        // set数据结构的键名和键值是相同的
+
+        let keys = set.keys()
+        console.log('keys ==> ',keys)
+
+        let values = set.values()
+        console.log('values ==> ',values)
+
+        let entries = set.entries()
+        console.log('entries ==> ',entries)
+
+        set.forEach((v , k) => {
+            // 键值
+            console.log('v ==> ',v)
+            // 键名
+            console.log('k ==> ',k)
+        })
+
+        console.log('set ==> ',set)
+    </script>
+</body>
+</html>

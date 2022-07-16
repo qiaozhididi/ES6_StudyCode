@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>let和const</title>
+</head>
+
+<body>
+    <script>
+        // js的数据类型 number string null undefined boolean object array function
+        // 变量提前:在没有声明之前使用
+        // 将某一数值赋给某个变量的过程，称为赋值。
+
+        // var:可以声明提前 可以重新赋值 可以重新声明变量 没有块级作用域
+        // let:不能声明提前 可以重新赋值 不可以重新声明变量 具有块级作用域
+        // const:不能声明提前 不能重新赋值 不能重新声明变量  具有块级作用域
+        console.log('a ==> ', a)
+            // console.log('b ==> ', b) 报错
+            // console.log('c ==> ', c) 报错
+
+        var a = 1
+        let b = 2
+        const c = 3
+
+
+        a = 5
+        b = 6
+            // c = 7
+
+        var a = 8
+            // let b = 9 报错
+
+        console.log('a ==> ', a)
+        console.log('b ==> ', b)
+        console.log('c ==> ', c)
+
+        // var x = 2
+        // let y = 2
+
+        // function fn1() {
+        //     var x = 4
+        //     let y = 4
+        //     x++
+        //     console.log('x==>', x)
+        //     console.log('y==>', y)
+        // }
+        // fn1()
+        // console.log('x1==>', x)
+        // console.log('y1==>', y)
+
+
+        // var x = 2
+        // function fn1() {
+        //     var x = 4
+        //     x++
+        //     console.log('x==>', x)
+        // }
+        // fn1()
+        // console.log('x1==>', x)
+
+        var x = 2
+        function fn1() {
+            var x = 4
+            let y = 4
+            x++
+            y++
+            console.log('x==>', x)
+            console.log('y==>', y)
+        }
+        fn1()
+            // console.log('x1==>', x) 报错
+            // console.log('y1==>', y) 报错
+        let arr = [3, 56, 76, 34, 56, 23]
+        for (let i = 0; i < arr.length; i++) {
+            console.log('i ==> ', i)
+        }
+        console.log('i1 ==> ', i)
+    </script>
+</body>
+
+</html>

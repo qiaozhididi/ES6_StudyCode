@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //js
+        // 创建构造函数
+        function Animal1(name, color) {
+            this.name = name;
+            this.color = color;
+        }
+        // 创建原型方法
+        Animal1.prototype.eat = function () {
+            console.log(`${this.name}吃老八蜜汁小憨包`);
+        };
+        var cat = new Animal1("吾皇", "灰白");
+        cat.eat();
+
+        // es6 class
+        class Animal {
+            //构造器
+            constructor(name, color) {
+                this.name = name;
+                this.color = color;
+            }
+            // 方法
+            eat() {
+                console.log(`${this.name}吃东西`);
+            }
+        }
+        // 创建实例
+        var dog = new Animal("二哈", "黑白");
+        dog.eat();
+    </script>
+</body>
+
+</html>

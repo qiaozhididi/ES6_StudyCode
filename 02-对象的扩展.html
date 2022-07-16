@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的扩展</title>
+</head>
+
+<body>
+    <script>
+        // 对象的动态键名
+        // 对象属性的简写
+        // 对象方法的简写
+        let key = "name"
+        let weight = "60kg"
+        let obj = {
+            // 键:值
+            // key:value
+            // name : "张三",
+            [key]: "zhangsan",
+            sex: "male",
+            weight,
+            // weight:weight,
+            getWeight() {
+                console.log('this.weight', this.weight)
+            },
+            getName() {
+                console.log('this ==>', this)
+                console.log('this.name ==>', this.name)
+                console.log('this.sex ==>', this.sex)
+            }
+        }
+        obj.getWeight()
+        obj.getName()
+            // Object.is() 判断两值是否相等 ===
+            // == 判断值是否相等
+            // === 判断值和类型是否全等 
+            // 传值 与 传址
+            // 
+            // let o1 = Object.is(1, 1) true
+            // let o1 = Object.is(1, '1') false
+            // let o1 = Object.is([], []) false
+            //  console.log(o1) 
+            // console.log([] == []) false
+
+        // Object.assign() 复制,复制之后改变源目标的值 目标对象不会跟着改变
+        // =赋值 目标对象会随着源对象的改变而改变
+        let o2 = {
+            name: "张三",
+            sex: "男"
+        }
+        let o3 = o2
+        let o4 = Object.assign({},o2)
+            o2.weight = "60kg"
+        console.log('o2==>', o2) //o2==> {name: "张三", sex: "男", weight: "60kg"}
+        console.log('o3==>', o3) //o3==> {name: "张三", sex: "男", weight: "60kg"}
+        console.log('o4==>', o4) //o4==> {name: "张三", sex: "男"}
+
+        // 封装一个复制对象的方法
+        Object.copy = function(target, source) {
+            // target 目标对象
+            // source 源对象
+            for (let key in source) {
+                target[key] = source[key]
+            }
+            return target
+        }
+        let o5 = Object.copy({}, o2)
+         o2.weight = "70kg"
+        console.log("o5==>", o5) //{name: "张三", sex: "男"}
+        console.log("o2==>", o2) //o2==> {name: "张三", sex: "男", weight: "70kg"}
+    </script>
+
+</body>
+
+</html>

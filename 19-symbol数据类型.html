@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>symbol</title>
+</head>
+<body>
+    <script>
+        // 基本数据类型：number  string  boolean  undefined  null
+        // 引用数据类型：object  array  function ==>(object)
+
+        // symbol  第七种数据类型，独一无二的值
+        // 用途：对象的属性
+
+        let key1 = Symbol('color')
+        console.log('key1 ==> ',key1)
+
+        let key2 = Symbol('color')
+        console.log('key2 ==> ',key2)
+
+        console.log(key1 == key2)
+
+        let animal = {
+            name:'dog',
+            name:'duck',
+            [key1]:'black',
+            [key2]:'white'
+        }
+
+        console.log('animal ==> ',animal)
+
+        // 获取对象属性的值
+        console.log('name ==> ',animal.name)
+        // 获取对象symbol类型的值
+        console.log('key1 ==> ',animal[key1])
+
+
+        // 遍历对象
+        for(let key in animal){
+            console.log('key ==> ',key)
+        }
+        // 获取symbol类型的键名
+        let symbolKey = Object.getOwnPropertySymbols(animal)
+        console.log('symbolKey ==> ',symbolKey)
+
+        symbolKey.map((v , f) => {
+            // 键名
+            console.log('v ==> ',v)
+            // 下标
+            console.log('f ==> ',f)
+            // 键值
+            console.log(animal[v])
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分类商品数据</title>
+</head>
+
+<body>
+    <script src='./data.js'></script>
+    <script>
+        // 1.先查找商品类型,保存在数组中,数组中的商品类型不能重复
+        console.log('data==>', data)
+
+        //获取商品类型
+        let types = []
+        data.map(function(e) {
+            // console.log(e.type)
+            if (types.indexOf(e.type) == -1) {
+                types.push(e.type)
+            }
+        })
+        console.log('types==>', types)
+            // 2.通过types数组中的商品类型来匹配商品
+            // arr[key] = []
+        let product = {}
+        types.map(function(el) {
+            // console.log('types==>', el)
+            product[el] = []
+            data.map(function(en) {
+                // console.log(en)
+                // console.log('data.type==>', en.type)
+                if (el == en.type) {
+                    product[el].push(en)
+                }
+            })
+        })
+        console.log('product==>', product)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        window.onload = function() {
+        function joinStr(fir, sec) { 
+            console.log(this)
+            this.name += 'abc'
+            this.name = fir + this.name + sec
+        }
+        let obj1 = {
+            name: 'aaaaaaaaa'
+        }
+        joinStr.call(obj1, 'ooo', 'ccc')
+        console.log('obj1', obj1)
+        // joinStr.apply(obj1, ['ooo', 'ccc'])
+        joinStr.bind(obj1,'ooo', 'ccc')()
+            
+        console.log('obj11', obj1)
+        }
+    </script>
+</body>
+</html>

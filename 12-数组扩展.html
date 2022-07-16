@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //filter
+        //map forEach
+        // find 
+        //findIndex
+
+        //Array.from() 将类数组对象转换成数组
+        //Array.of() 
+        //类数组对象
+        let obj = {
+            0: 'cat',
+            1: 'dog',
+            2: 'mouse',
+            length: 3
+        }
+        console.log('obj==>', obj)
+            // Array.from() 将类数组对象转换成数组
+            // js
+            // let animal = [].slice.call(obj)
+            // let animal = Array.prototype.slice.call(obj)
+
+        //es6
+        let animal = Array.from(obj)
+        let arr = animal.push('pig')
+        console.log('animal==>', animal)
+        console.log('arr==>', arr)
+
+        // Array.of() 将一个数据转换成数组
+        //js
+        let num = new Array(2, 3)
+        console.log('num==>', num)
+            // es6
+        console.log(Array.of('a'))
+        console.log('-----------------------------------------------')
+        let mark = [100, 120, 90, 130]
+            // forEach(fn(e,i,arr),上下文this) 循环遍历数组 返回值为undefined
+        let arr1 = mark.forEach(function(a, b, c) {
+            // a 数组元素
+            // b 下标
+            // 源数组
+            console.log('a == > ', a)
+            console.log('b == > ', b)
+            console.log('c == > ', c)
+            return a
+        }, ['a'])
+        console.log('arr1==>', arr1)
+        console.log('------------------------------------')
+
+        // map(fn(e,i,arr),上下文this) 循环遍历数组 有返回值,返回的是数组
+        let arr2 = mark.map(function(element, index, arr) {
+            console.log('element == > ', element)
+            console.log('index == > ', index)
+            console.log('arr == > ', arr)
+            return element
+        }, ['a'])
+        console.log('arr2==>', arr2)
+
+        console.log('------------------------------------')
+
+
+        // filter(fn,上下文this ) fn(a,b,c) 过滤
+        let arr3 = mark.filter(function(en, i, arr) {
+            console.log('en==>', en)
+            console.log('i==>', i)
+            console.log('arr==>', arr)
+                // 如果没有第二个参数,this指向window
+            console.log('this==>', this)
+            return en > 90
+        }, ['a'])
+        console.log('arr3==>', arr3)
+
+        //封装类似filter的方法
+        Array.prototype.fillterArr = function(fn, t) {
+            let target = []
+                // console.log('this==>', this)
+            for (let i = 0; i < this.length; i++) {
+                // console.log('this==>', this[i])
+                // fn(this[i], i, this)
+                let isYes = fn.call(t, this[i], i, this)
+                if (isYes) {
+                    target.push(this[i])
+                }
+            }
+            return target
+        }
+        let arr4 = mark.fillterArr(function(en, i, arr) {
+            console.log('en==>', en)
+            console.log('this1==>', this)
+            return en < 120
+        }, ['a', 'b'])
+        console.log('arr4==>', arr4)
+            // map forEach 都是遍历循环
+            // find(fn(e,i,arr),上下文this) 查找,找到元素目标后不会继续运行,返回值为查找的元素
+        let book = ['HTML', 'CSS', 'JS', 'JQ', 'VUE']
+        let arr5 = book.find(function(element, index, arr) {
+            console.log('element==>', element)
+            console.log('index==>', index)
+            console.log('arr==>', arr)
+            console.log('this find==>', this)
+            return element == 'JS'
+        }, ['a'])
+        console.log('arr5==>', arr5)
+            // findIndex(fn(e,i,arr),上下文this) 查找下标值 找不到对应的元素时返回-1 能找到对应元素时返回下标值
+        let arr6 = book.findIndex(function(element, index, arr) {
+            console.log('element==>', element)
+            console.log('index==>', index)
+            console.log('arr==>', arr)
+            console.log('this find==>', this)
+            return element == 'JS'
+        }, ['a'])
+        console.log('arr6==>', arr6)
+    </script>
+</body>
+
+</html>

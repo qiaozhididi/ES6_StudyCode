@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串编码解码</title>
+</head>
+
+<body>
+    <script>
+        // slice(开始的下标,结束的下标[可选])
+        // substring(开始的下标,结束的下标)
+        // substr (开始的下标,长度)
+        let obj = {
+            // 编码encode
+            enCodeString(value) {
+                // 定义空数组接受ASCII码
+                let codes = []
+                    // 循环遍历要编码的字符串
+                for (var i = 0; i < value.length; i++) {
+                    // console.log('value[i]==>', value[i])
+                    // 通过x.charCodeAt()获取x的ASCII码
+                    let code = `${value[i].charCodeAt() + 100000+3*1000}`
+                        // let code = `${value[i].charCodeAt() + 100000}` 数据类型为string
+                        // let code = value[i].charCodeAt() + 100000 数据类型为number
+                         console.log(typeof code)
+                        // slice(开始的下标,结束的下标[可选]) 截取字符串 
+                    code = code.slice(1)
+                         console.log('code', code)
+                    codes.push(code)
+                        // console.log(codes)
+                }
+                // console.log(codes.join(''))
+                return codes.reverse().join('')
+            },
+            // 解码decode
+            deCodeString(value) {
+                let chars = []
+                for (var i = 0; i < value.length; i += 5) {
+                    // String.fromCodePoint(value)
+                    let char = String.fromCharCode(value.substr(i, 5) - 3000)
+                        // console.log(char)
+                    chars.unshift(char)
+
+                }
+                // console.log(chars.join(''))
+                return chars.join('')
+            }
+
+        }
+        let str = '今天星期四,晚上9点结束课程,就可以回家了'
+        let codes = obj.enCodeString(str)
+        console.log(codes)
+        let char = obj.deCodeString(codes)
+        console.log(char)
+    </script>
+</body>
+
+</html>

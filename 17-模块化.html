@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模块化</title>
+</head>
+<body>
+    <script type="module">
+        // 默认导入
+        import a from './check.js'
+
+        // 具名导入
+        import format,{tools,tool} from './tool.js'
+
+        console.log('checkForm ==> ',a)
+
+        a.checkEmail()
+
+        a.checkPassword()
+
+        console.log('tools ==> ',tools)
+
+        tools.upLoad()
+
+        console.log('format ==> ',format)
+        format.upLoad()
+
+        console.log('tool ==> ',tool)
+        tool.upLoad()
+    </script>
+</body>
+</html>

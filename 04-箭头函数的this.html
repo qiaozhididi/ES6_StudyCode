@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箭头函数的this</title>
+</head>
+
+<body>
+    <script>
+        // 普通函数:this是在函数调用时才会确定指向
+        // 箭头函数:this是在函数定义时直接确定指向
+        let animal = {
+            name: "cat",
+            color: "black",
+            speed: "2m/s",
+            getName() {
+                // this指代getName()
+                console.log('this1==>', this) //{name: "cat", color: "black", getName: ƒ, getColor: ƒ}
+                console.log('this.name==>', this.name)
+                    // 定义一个箭头函数
+                let fn = () => {
+                    // this指代当前函数的父级函数getName()的环境
+                    console.log('this3==>', this) //{name: "cat", color: "black", getName: ƒ, getColor: ƒ}
+                }
+                fn()
+
+            },
+
+            getColor: () => {
+                // 箭头函数指向当前调用的getColor()的父级animal的环境
+                console.log('this2==>', this) //Window {parent: Window, opener: null, top: Window, length: 0, frames: Window, …}a
+            },
+            getSpeed() {
+                setTimeout(() => {
+                    // this指代当前定时器的父级函数getSpeed()的环境
+                    console.log('this4==>', this)
+                })
+            }
+        }
+        animal.getName()
+        animal.getColor()
+        animal.getSpeed()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promise</title>
+</head>
+
+<body>
+    <script>
+        // promise   一个异步的解决方案
+        // promise主要解决回调地狱
+        // api.get(function(){
+        //     // 请求完成后处理
+        //     api.post(function(){
+        //         // 请求完成后处理
+        //         api.put(function(){
+        //             // 请求完成后处理
+        //             api.delete(function(){
+        //                 // 请求完成后处理
+        //                 .....
+        //             })
+        //         })
+        //     })
+        // })
+
+        // promise:三种状态(进行中pending , 已成功resolved , 已拒绝rejcted)
+        // 两种结果：进行中pending ==> 已成功resolved
+        //          进行中pending ==> 已拒绝rejcted
+
+        // resolved 和 rejcted 称之为凝固状态
+
+        // promise一旦确定状态，该状态就无法改变，该结果随时都能获取
+
+        let promise = new Promise((resolved, rejcted) => {
+
+            // 凝固状态
+            resolved([34, 56, 78, 89])
+            // rejcted('已拒绝')
+
+        })
+
+        // then() 方法必须要promise凝固状态下才可以执行
+
+        // promise.then(result => {
+        //     console.log('result ==> ',result)
+        // },error => {
+        //     console.log('error ==> ',error)
+        // })
+
+        // catch()  捕获
+        promise.then(result => {
+            console.log('result ==> ', result)
+        }).catch(error => {
+            console.log('error ==> ', error)
+        })
+
+
+        promise.then(r1 => {
+
+            let target = r1.filter(value => {
+                return value > 60
+            })
+            return target
+
+        }).then(r2 => {
+
+            console.log('r2 ==> ', r2)
+            return r2
+
+        }).then(r3 => {
+
+            console.log('r3 ==> ', r3)
+
+        })
+
+
+        // 多个任务执行完成后再执行某个事件
+        let task1 = new Promise((resolved, rejcted) => {
+            resolved('任务1成功')
+        })
+        let task2 = new Promise((resolved, rejcted) => {
+            // resolved('任务2成功')
+            rejcted('任务2出错')
+        })
+        let task3 = new Promise((resolved, rejcted) => {
+            resolved('任务3成功')
+        })
+
+        // task1.then(r1 => {
+        //     console.log('r1 ==> ',r1)
+        // })
+        // task2.then(r2 => {
+        //     console.log('r2 ==> ',r2)
+        // })
+        // task3.then(r3 => {
+        //     console.log('r3 ==> ',r3)
+        // })
+
+        Promise.all([
+            task1.then(r1 => {
+                console.log('r1 ==> ', r1)
+            }),
+            task2.then(r2 => {
+                console.log('r2 ==> ', r2)
+            }),
+            task3.then(r3 => {
+                console.log('r3 ==> ', r3)
+            })
+        ]).then(() => {
+            console.log('所有任务已经完成')
+            console.log('异步')
+        }).catch(err => {
+            console.log('中途有任务出错')
+            console.log('err ==> ',err)
+        })
+
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflect</title>
+</head>
+<body>
+    <script>
+        // Reflect   操作对象的API
+            // apply
+            // construct
+            // deleteProperty   删除对象属性
+            // defineProperty   自定义对象属性
+            // has             判断是否有元素
+            // ownKeys         获取键名
+            // preventExtensions   对象防扩展，不能添加新的属性
+            // isExtensible       判断对象是否被防扩展
+            // set             添加
+            // get             获取
+
+
+
+        // Reflect.apply
+        // 1
+        let arrMax = [98,23,12,34,56]
+        let max = Math.max.call(Math,98,23,12,34,56)
+        let max1 = Math.max.apply(Math,arrMax)
+        // console.log('max ==> ',max)
+
+        // (要进行的操作，放在哪里操作，操作的对象)
+        // 2
+        let m = Reflect.apply(Math.max ,Math ,[98,23,12,34,56])
+        console.log('m ==>',m)
+
+        let obj1 = {
+            name:'小明',
+            getName(a){
+                console.log('this.name ==> ',this.name)
+                console.log('a ==> ',a)
+            }
+        }
+        let obj2 = {
+            name:'小红'
+        }
+        // 1
+        // obj1.getName.call(obj2,8)
+        // obj1.getName.apply(obj2,[8])
+        // 2
+        Reflect.apply(obj1.getName ,obj2 ,[8])
+
+
+        // Reflect.construct  创建实例
+        class Animal {
+            constructor(name ,color){
+                this.name = name
+                this.color = color
+            }
+        }
+        // 1
+        let dog = new Animal('dog','black')
+        console.log('dog ==> ',dog)
+        // 2
+        let cat = Reflect.construct(Animal,['cat','white'])
+        console.log('cat ==> ',cat)
+        
+
+
+        // Reflect.deleteProperty   删除对象属性
+        let obj3 = {
+            height:180,
+            weight:120
+        }
+        Reflect.deleteProperty(obj3 ,'weight')
+        console.log('obj3 ==> ',obj3)
+
+
+        // Reflect.defineProperty   自定义对象属性
+        Reflect.defineProperty(obj3 , 'sex' ,{
+            // 值
+            value:'man',
+            // 是否可修改
+            writable:true,
+            // 是否可删除
+            configurable:false,
+            // 是否可以遍历
+            enumerable:true
+        })
+
+        obj3.sex = 'woman'
+        console.log('obj3 ==> ',obj3)
+
+
+        // Reflect.has             判断是否有元素
+        let isHas = Reflect.has(obj3 , 'weight')
+        console.log('isHas ==> ',isHas)  //false
+
+
+        // Reflect.ownKeys         获取键名
+        let keys = Reflect.ownKeys(obj3)
+        console.log('keys ==> ',keys)
+
+
+        // Reflect.preventExtensions   对象防扩展，不能添加新的属性
+        Reflect.preventExtensions(obj3)
+        obj3.name = 'zhangsan'
+        console.log('obj3 ==> ',obj3)
+
+
+        // Reflect.isExtensible       判断对象是否被防扩展
+        console.log(Reflect.isExtensible(obj3))  //false
+
+
+        let o1 = {
+            name:'zhangsan',
+            sex:'man'
+        }
+        let o2 = {
+            name:'lisi',
+            height:180
+        }
+        // Reflect.set             如果有属性，则修改，如果没有则添加
+        Reflect.set(o1 ,'name' ,o2)
+
+        console.log('o1 ==>',o1)
+        console.log('o2 ==>',o2)
+
+
+        // Reflect.get             获取
+        console.log(Reflect.get(o1 ,'sex'))
+    </script>
+</body>
+</html>

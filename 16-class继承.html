@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class继承</title>
+</head>
+
+<body>
+    <script>
+        // 父级
+        class Animal {
+            // 构造器
+            constructor(name, color) {
+                this.name = name
+                this.color = color
+            }
+            // 方法
+            eat() {
+                console.log('this ==> ', this)
+            }
+        }
+        // 实例化
+        let dog = new Animal('哈士奇', '黑白')
+        dog.eat()
+
+
+        // class继承
+        // 子级
+        // class Birds extends Animal {
+
+        // }
+        // let bird = new Birds('bird','black')
+        // bird.eat()
+
+        // 子级
+        class Birds extends Animal {
+            // 重写构造器
+            constructor(name ,color ,speed){
+                super(name ,color)
+                // this.name = name
+                // this.color = color
+                this.speed = speed
+            }
+
+            fly(){
+                console.log('this.speed ==> ',this.speed)
+            }
+        }
+        let bird = new Birds('bird', 'black', '100km/s')
+        bird.eat()
+        bird.fly()
+    </script>
+</body>
+
+</html>
